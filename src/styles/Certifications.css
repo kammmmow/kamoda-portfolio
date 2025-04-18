@@ -1,0 +1,145 @@
+/* src/styles/Certifications.css */
+.certifications {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .certifications-title {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .certifications-card {
+    background-color: #f8f9fa;
+    border: 1px solid #007bff;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .certifications-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+  
+  .filter-button {
+    padding: 8px 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #6c757d;
+  }
+  
+  .filter-button:hover {
+    background-color: #e9ecef;
+    color: #495057;
+  }
+  
+  .filter-button.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+  }
+  
+  .certifications-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+  }
+  
+  .certification-item {
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-left: 5px solid;
+  }
+  
+  .certification-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .certification-item.highschool {
+    border-left-color: #28a745;
+  }
+  
+  .certification-item.university {
+    border-left-color: #007bff;
+  }
+  
+  .certification-badge {
+    background-color: #e9ecef;
+    color: #495057;
+    font-size: 0.8rem;
+    padding: 3px 8px;
+    border-radius: 12px;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+  
+  .certification-item.highschool .certification-badge {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+  }
+  
+  .certification-item.university .certification-badge {
+    background-color: rgba(0, 123, 255, 0.1);
+    color: #007bff;
+  }
+  
+  .certification-text {
+    flex: 1;
+    font-size: 0.9rem;
+  }
+  
+  /* アニメーション効果 */
+  .certification-item {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* レスポンシブ対応 */
+  @media screen and (max-width: 600px) {
+    .certifications {
+      padding: 10px;
+    }
+    
+    .certifications-card {
+      padding: 15px;
+      margin: 5px;
+    }
+    
+    .filter-button {
+      padding: 6px 12px;
+      font-size: 0.8rem;
+    }
+    
+    .certifications-list {
+      grid-template-columns: 1fr;
+    }
+    
+    .certification-text {
+      font-size: 0.8rem;
+    }
+  }

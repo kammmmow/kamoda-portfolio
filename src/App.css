@@ -1,38 +1,142 @@
-.App {
-  text-align: center;
+/* src/App.css */
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.2em;
+  background-image: var(--background-image);
+  background-repeat: repeat-y;
+  background-size: contain;
+  margin: 0;
+  line-height: 1.6;
+  color: #333;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Kiwi Maru', serif;
 }
 
-.App-header {
-  background-color: #282c34;
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1rem;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.content-body {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  background-color: rgba(255, 255, 255, 0.9);
   min-height: 100vh;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.section-divider {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+  margin: 30px 0;
+}
+
+/* ローディングアニメーション */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f8f9fa;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  z-index: 9999;
 }
 
-.App-link {
-  color: #61dafb;
+.loader {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3082fd;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-screen p {
+  font-family: 'Kiwi Maru', serif;
+  color: #333;
+  font-size: 1.2rem;
+  animation: fadeIn 1.5s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* スムーズスクロール */
+html {
+  scroll-behavior: smooth;
+}
+
+/* レスポンシブデザイン */
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 14px;
   }
-  to {
-    transform: rotate(360deg);
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.6rem;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+  }
+  
+  .content-body {
+    padding: 0 10px;
+  }
+  
+  .section-divider {
+    margin: 20px 0;
   }
 }

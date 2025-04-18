@@ -1,0 +1,59 @@
+.strength {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .strength-title {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .strength-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .strength-item {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .strength-button {
+    background-color: #3082fd;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 75%;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 5px 0 #185685;
+  }
+  
+  .strength-button:hover {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 #185685;
+  }
+  
+  .strength-button:active {
+    transform: translateY(5px);
+    box-shadow: none;
+  }
+  
+  /* レスポンシブ対応 */
+  @media screen and (max-width: 600px) {
+    .strength {
+      padding: 10px;
+    }
+    
+    .strength-button {
+      font-size: 0.9rem;
+      padding: 10px 20px;
+    }
+  }

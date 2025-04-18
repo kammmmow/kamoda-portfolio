@@ -1,0 +1,140 @@
+/* src/styles/Research.css */
+.research {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .research-title {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .research-card {
+    background-color: #f8f9fa;
+    border: 1px solid #28a745;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .research-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .research-card h3 {
+    color: #28a745;
+    margin-top: 0;
+    font-size: 1.3rem;
+  }
+  
+  .research-card p {
+    line-height: 1.6;
+  }
+  
+  /* 進捗状況表示のスタイル */
+  .research-progress {
+    margin-top: 25px;
+    border-top: 1px dashed #ddd;
+    padding-top: 15px;
+  }
+  
+  .progress-container {
+    background-color: #e9ecef;
+    border-radius: 20px;
+    height: 20px;
+    width: 100%;
+    margin: 15px 0;
+    overflow: hidden;
+  }
+  
+  .progress-bar {
+    background-color: #28a745;
+    height: 100%;
+    color: white;
+    text-align: center;
+    line-height: 20px;
+    font-size: 0.8rem;
+    border-radius: 20px;
+    transition: width 1s ease;
+  }
+  
+  .progress-stages {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    margin-top: 20px;
+  }
+  
+  .stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+  }
+  
+  .stage-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #e9ecef;
+    border: 2px solid #ced4da;
+    margin-bottom: 5px;
+  }
+  
+  .stage-label {
+    font-size: 0.7rem;
+    text-align: center;
+    color: #6c757d;
+  }
+  
+  .stage.completed .stage-dot {
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+  
+  .stage.active .stage-dot {
+    background-color: white;
+    border-color: #28a745;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2);
+  }
+  
+  .stage.completed .stage-label {
+    color: #28a745;
+  }
+  
+  .stage.active .stage-label {
+    color: #212529;
+    font-weight: bold;
+  }
+  
+  /* レスポンシブ対応 */
+  @media screen and (max-width: 600px) {
+    .research {
+      padding: 10px;
+    }
+    
+    .research-card {
+      padding: 15px;
+      margin: 5px;
+    }
+    
+    .research-card h3 {
+      font-size: 1.1rem;
+    }
+    
+    .research-card p, .stage-label {
+      font-size: 0.8rem;
+    }
+    
+    .progress-stages {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .stage-label {
+      font-size: 0.6rem;
+    }
+  }
