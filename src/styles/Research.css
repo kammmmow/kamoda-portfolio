@@ -66,13 +66,16 @@
     justify-content: space-between;
     padding: 0 10px;
     margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
   }
   
   .stage {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 20%;
+    min-width: 60px;
+    flex: 1;
   }
   
   .stage-dot {
@@ -82,12 +85,15 @@
     background-color: #e9ecef;
     border: 2px solid #ced4da;
     margin-bottom: 5px;
+    flex-shrink: 0;
   }
   
   .stage-label {
     font-size: 0.7rem;
     text-align: center;
     color: #6c757d;
+    word-break: break-word;
+    line-height: 1.2;
   }
   
   .stage.completed .stage-dot {
@@ -110,7 +116,24 @@
     font-weight: bold;
   }
   
-  /* レスポンシブ対応 */
+  /* タブレット表示用の調整 */
+  @media screen and (max-width: 768px) {
+    .progress-stages {
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .stage {
+      min-width: 50px;
+      max-width: 80px;
+    }
+    
+    .stage-label {
+      font-size: 0.65rem;
+    }
+  }
+  
+  /* スマートフォン表示用の大幅な改善 */
   @media screen and (max-width: 600px) {
     .research {
       padding: 10px;
@@ -125,16 +148,49 @@
       font-size: 1.1rem;
     }
     
-    .research-card p, .stage-label {
+    .research-card p {
       font-size: 0.8rem;
     }
     
+    /* スマートフォンでは2列表示に変更 */
     .progress-stages {
-      flex-wrap: wrap;
-      gap: 10px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      justify-items: center;
+      padding: 0 5px;
+    }
+    
+    .stage {
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+    }
+    
+    .stage-dot {
+      width: 12px;
+      height: 12px;
     }
     
     .stage-label {
       font-size: 0.6rem;
+      padding: 0 2px;
+      min-height: 2.4em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  
+  /* 非常に小さい画面用（320px以下）*/
+  @media screen and (max-width: 480px) {
+    .progress-stages {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    
+    .stage-label {
+      font-size: 0.55rem;
+      min-height: 3em;
     }
   }
