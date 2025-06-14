@@ -76,30 +76,50 @@ function App() {
               </p>
             </Modal>
             
-            <Introduction />
+            {/* ホームセクション */}
+            <section id="home-section">
+              <Introduction />
+            </section>
             
             <hr className="section-divider" />
             
-            {/* <Strengths />
+            {/* <section id="strengths-section">
+              <Strengths />
+            </section>
             
             <hr className="section-divider" /> */}
             
-            <Research />
+            {/* 研究内容セクション */}
+            <section id="research-section">
+              <Research />
+            </section>
             
             <hr className="section-divider" />
             
-            <Achievements />
+            {/* 実績・活動セクション */}
+            <section id="achievements-section">
+              <Achievements />
+            </section>
             
             <hr className="section-divider" />
             
-            <Education />
+            {/* 学歴セクション */}
+            <section id="education-section">
+              <Education />
+            </section>
             
             <hr className="section-divider" />
             
-            <Certifications />
+            {/* 資格セクション */}
+            <section id="certifications-section">
+              <Certifications />
+            </section>
           </div>
           
-          <Footer />
+          {/* お問い合わせセクション */}
+          <section id="contact-section">
+            <Footer />
+          </section>
         </>
       )}
     </div>
