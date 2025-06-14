@@ -1,196 +1,743 @@
-/* src/styles/Research.css */
+/* モダンなResearch.css */
 .research {
-    padding: 20px;
-    margin-bottom: 20px;
+  position: relative;
+  padding: 4rem 2rem;
+  min-height: 100vh;
+  background: linear-gradient(135deg, 
+    #1e3c72 0%, 
+    #2a5298 50%, 
+    #667eea 100%);
+  overflow: hidden;
+}
+
+/* セクションヘッダー */
+.research-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 2;
+}
+
+.research-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.research-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  margin: 1rem 0;
+  background: linear-gradient(135deg, #fff 0%, #a8edea 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.research-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* 背景エフェクト */
+.research-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.floating-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: particleFloat 8s ease-in-out infinite;
+}
+
+.particle-1 {
+  width: 120px;
+  height: 120px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.particle-2 {
+  width: 80px;
+  height: 80px;
+  top: 70%;
+  right: 15%;
+  animation-delay: 3s;
+}
+
+.particle-3 {
+  width: 60px;
+  height: 60px;
+  bottom: 30%;
+  left: 60%;
+  animation-delay: 6s;
+}
+
+@keyframes particleFloat {
+  0%, 100% { 
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% { 
+    transform: translate3d(20px, -30px, 0) rotate(180deg);
+    opacity: 0.6;
+  }
+}
+
+/* コンテナ */
+.research-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* 研究カード */
+.research-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 8px 16px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(50px);
+  will-change: transform, opacity;
+  position: relative;
+  overflow: hidden;
+}
+
+.research-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--accent-color, #4CAF50);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.research-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.research-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 32px 64px rgba(0, 0, 0, 0.15),
+    0 16px 32px rgba(0, 0, 0, 0.1);
+}
+
+.research-card:hover::before {
+  opacity: 1;
+}
+
+.research-card.expanded {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 24px 48px rgba(0, 0, 0, 0.2),
+    0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.research-card.expanded::before {
+  opacity: 1;
+}
+
+/* カードヘッダー */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.card-category {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.category-badge {
+  background: var(--accent-color, #4CAF50);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge {
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.status-completed {
+  background: rgba(76, 175, 80, 0.1);
+  color: #4CAF50;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.status-ongoing {
+  background: rgba(255, 152, 0, 0.1);
+  color: #FF9800;
+  border: 1px solid rgba(255, 152, 0, 0.3);
+}
+
+.card-expand-icon {
+  color: #666;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.research-card.expanded .card-expand-icon {
+  transform: rotate(180deg);
+}
+
+/* カードタイトル */
+.card-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #333;
+  margin: 1rem 0;
+  line-height: 1.4;
+}
+
+/* プログレスセクション - シンプル版 */
+.progress-section {
+  margin: 1.5rem 0;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.progress-label {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.progress-label::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--accent-color, #4CAF50);
+  border-radius: 50%;
+}
+
+.progress-percentage {
+  font-size: 1.2rem;
+  color: var(--accent-color, #4CAF50);
+  font-weight: 700;
+  background: rgba(var(--accent-color, #4CAF50), 0.1);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  border: 2px solid var(--accent-color, #4CAF50);
+}
+
+.progress-bar-container {
+  height: 12px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--accent-color, #4CAF50);
+  border-radius: 10px;
+  transition: width 0.8s ease-out;
+  position: relative;
+}
+
+/* プログレス完了時のスタイル */
+.research-card[data-progress="100"] .progress-percentage {
+  background: linear-gradient(45deg, #4CAF50, #66BB6A);
+  color: white;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.research-card[data-progress="100"] .progress-bar-fill {
+  background: linear-gradient(90deg, #4CAF50, #66BB6A);
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+/* キー機能 */
+.key-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+.feature-tag {
+  background: rgba(var(--accent-color, #4CAF50), 0.1);
+  color: var(--accent-color, #4CAF50);
+  padding: 0.4rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid rgba(var(--accent-color, #4CAF50), 0.2);
+}
+
+/* 展開可能コンテンツ */
+.card-expandable {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s ease-out;
+  opacity: 0;
+}
+
+.card-expandable.expanded {
+  max-height: 2000px;
+  opacity: 1;
+  margin-top: 1.5rem;
+}
+
+.research-description {
+  margin-bottom: 2rem;
+}
+
+.research-description p {
+  color: #555;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-subtitle::before {
+  content: '';
+  width: 4px;
+  height: 20px;
+  background: var(--accent-color, #4CAF50);
+  border-radius: 2px;
+}
+
+/* 技術セクション */
+.technology-section {
+  margin-bottom: 2rem;
+}
+
+.technology-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.8rem;
+}
+
+.tech-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 0, 0, 0.03);
+  padding: 0.8rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #555;
+  transition: all 0.2s ease;
+}
+
+.tech-item:hover {
+  background: rgba(var(--accent-color, #4CAF50), 0.05);
+  color: var(--accent-color, #4CAF50);
+}
+
+.tech-item i {
+  color: var(--accent-color, #4CAF50);
+  font-size: 0.8rem;
+}
+
+/* 研究段階 - シンプル版 */
+.stages-section {
+  margin-bottom: 2rem;
+}
+
+.stages-timeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.8rem;
+}
+
+.stage-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: rgba(0, 0, 0, 0.03);
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #666;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.stage-item.completed {
+  background: rgba(76, 175, 80, 0.1);
+  color: #4CAF50;
+  border-color: rgba(76, 175, 80, 0.3);
+}
+
+.stage-item.active {
+  background: rgba(255, 152, 0, 0.1);
+  color: #FF9800;
+  border-color: rgba(255, 152, 0, 0.3);
+  position: relative;
+}
+
+.stage-item.active::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #FF9800, #FFC107);
+  border-radius: 12px;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.stage-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.stage-item.completed .stage-dot {
+  background: #4CAF50;
+  color: white;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+.stage-item.active .stage-dot {
+  background: #FF9800;
+  color: white;
+  box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
+}
+
+.stage-item:not(.completed):not(.active) .stage-dot {
+  background: rgba(0, 0, 0, 0.1);
+  color: #999;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.stage-label {
+  flex: 1;
+  line-height: 1.3;
+}
+
+/* インパクトセクション */
+.impact-section {
+  margin-bottom: 1rem;
+}
+
+.impact-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: linear-gradient(135deg, var(--accent-color, #4CAF50), rgba(var(--accent-color, #4CAF50), 0.8));
+  color: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+  font-weight: 500;
+  box-shadow: 0 8px 24px rgba(var(--accent-color, #4CAF50), 0.3);
+}
+
+.impact-card i {
+  font-size: 1.5rem;
+  opacity: 0.9;
+}
+
+/* セクションフッター */
+.research-footer {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.research-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem 2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  min-width: 120px;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* レスポンシブデザイン（スマートフォン重視） */
+@media screen and (max-width: 768px) {
+  .research {
+    padding: 3rem 1rem;
   }
   
   .research-title {
-    text-align: center;
-    margin: 20px 0;
+    font-size: 2.2rem;
+  }
+  
+  .research-subtitle {
+    font-size: 1rem;
   }
   
   .research-card {
-    background-color: #f8f9fa;
-    border: 1px solid #28a745;
-    border-radius: 8px;
-    padding: 20px;
-    margin: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 20px;
   }
   
-  .research-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  .card-title {
+    font-size: 1.2rem;
+    line-height: 1.3;
   }
   
-  .research-card h3 {
-    color: #28a745;
-    margin-top: 0;
-    font-size: 1.3rem;
+  .progress-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
   }
   
-  .research-card p {
+  .progress-percentage {
+    font-size: 1rem;
+    padding: 0.4rem 1rem;
+  }
+  
+  .key-features {
+    gap: 0.4rem;
+  }
+  
+  .feature-tag {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+  }
+  
+  .technology-grid {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+  
+  .stages-timeline {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+  
+  .research-stats {
+    gap: 1.5rem;
+  }
+  
+  .stat-item {
+    padding: 1rem 1.5rem;
+    min-width: 100px;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  
+  .impact-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
+    padding: 1.2rem;
+  }
+  
+  /* モバイルでパーティクルを軽量化 */
+  .particle {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .research {
+    padding: 2rem 0.8rem;
+  }
+  
+  .research-title {
+    font-size: 1.8rem;
+  }
+  
+  .research-card {
+    padding: 1.2rem;
+    border-radius: 16px;
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+  }
+  
+  .research-description p {
+    font-size: 0.9rem;
     line-height: 1.6;
   }
   
-  /* 進捗状況表示のスタイル */
-  .research-progress {
-    margin-top: 25px;
-    border-top: 1px dashed #ddd;
-    padding-top: 15px;
-  }
-  
-  .progress-container {
-    background-color: #e9ecef;
-    border-radius: 20px;
-    height: 20px;
-    width: 100%;
-    margin: 15px 0;
-    overflow: hidden;
-  }
-  
-  .progress-bar {
-    background-color: #28a745;
-    height: 100%;
-    color: white;
-    text-align: center;
-    line-height: 20px;
-    font-size: 0.8rem;
-    border-radius: 20px;
-    transition: width 1s ease;
-  }
-  
-  .progress-stages {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 10px;
-    margin-top: 20px;
+  .card-category {
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 0.3rem;
   }
   
-  .stage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 60px;
-    flex: 1;
-  }
-  
-  .stage-dot {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: #e9ecef;
-    border: 2px solid #ced4da;
-    margin-bottom: 5px;
-    flex-shrink: 0;
-  }
-  
-  .stage-label {
+  .category-badge,
+  .status-badge {
     font-size: 0.7rem;
-    text-align: center;
-    color: #6c757d;
-    word-break: break-word;
-    line-height: 1.2;
+    padding: 0.25rem 0.6rem;
   }
   
-  .stage.completed .stage-dot {
-    background-color: #28a745;
-    border-color: #28a745;
+  .section-subtitle {
+    font-size: 1rem;
   }
   
-  .stage.active .stage-dot {
-    background-color: white;
-    border-color: #28a745;
-    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2);
+  .tech-item {
+    padding: 0.6rem;
+    font-size: 0.85rem;
   }
   
-  .stage.completed .stage-label {
-    color: #28a745;
+  .stat-number {
+    font-size: 1.3rem;
   }
   
-  .stage.active .stage-label {
-    color: #212529;
-    font-weight: bold;
+  .stat-label {
+    font-size: 0.8rem;
+  }
+}
+
+/* アニメーション遅延 */
+.research-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.research-card:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.research-card:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+/* ダークモード対応（オプション） */
+@media (prefers-color-scheme: dark) {
+  .research-card {
+    background: rgba(30, 30, 30, 0.95);
+    color: #fff;
   }
   
-  /* タブレット表示用の調整 */
-  @media screen and (max-width: 768px) {
-    .progress-stages {
-      justify-content: center;
-      gap: 8px;
-    }
-    
-    .stage {
-      min-width: 50px;
-      max-width: 80px;
-    }
-    
-    .stage-label {
-      font-size: 0.65rem;
-    }
+  .card-title {
+    color: #fff;
   }
   
-  /* スマートフォン表示用の大幅な改善 */
-  @media screen and (max-width: 600px) {
-    .research {
-      padding: 10px;
-    }
-    
-    .research-card {
-      padding: 15px;
-      margin: 5px;
-    }
-    
-    .research-card h3 {
-      font-size: 1.1rem;
-    }
-    
-    .research-card p {
-      font-size: 0.8rem;
-    }
-    
-    /* スマートフォンでは2列表示に変更 */
-    .progress-stages {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      justify-items: center;
-      padding: 0 5px;
-    }
-    
-    .stage {
-      width: 100%;
-      max-width: none;
-      min-width: 0;
-    }
-    
-    .stage-dot {
-      width: 12px;
-      height: 12px;
-    }
-    
-    .stage-label {
-      font-size: 0.6rem;
-      padding: 0 2px;
-      min-height: 2.4em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+  .research-description p {
+    color: rgba(255, 255, 255, 0.8);
   }
   
-  /* 非常に小さい画面用（320px以下）*/
-  @media screen and (max-width: 480px) {
-    .progress-stages {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-    
-    .stage-label {
-      font-size: 0.55rem;
-      min-height: 3em;
-    }
+  .section-subtitle {
+    color: #fff;
   }
+  
+  .tech-item {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .stage-item {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+
+/* スクロール最適化 */
+.research-card {
+  contain: layout style paint;
+}
+
+/* タッチデバイス最適化 */
+@media (hover: none) and (pointer: coarse) {
+  .research-card:hover {
+    transform: none;
+  }
+  
+  .research-card:active {
+    transform: scale(0.98);
+  }
+  
+  .tech-item:hover {
+    background: rgba(0, 0, 0, 0.03);
+  }
+}
