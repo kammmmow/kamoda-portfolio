@@ -107,7 +107,7 @@ const Introduction = () => {
               </div>
             </div>
 
-            <div className="intro-actions">
+            {/* <div className="intro-actions">
               <button className="cta-button primary">
                 <span>View My Work</span>
                 <i className="fas fa-arrow-right"></i>
@@ -116,7 +116,7 @@ const Introduction = () => {
                 <span>Download CV</span>
                 <i className="fas fa-download"></i>
               </button>
-            </div>
+            </div> */}
           </div>
 
           {/* 右側：画像エリア */}
