@@ -499,13 +499,56 @@
   color: white;
   padding: 1.5rem;
   border-radius: 16px;
-  font-weight: 500;
+  font-weight: 600;
   box-shadow: 0 8px 24px rgba(var(--accent-color, #4CAF50), 0.3);
+  font-size: 0.95rem;
 }
 
 .impact-card i {
   font-size: 1.5rem;
   opacity: 0.9;
+  flex-shrink: 0;
+}
+
+/* ライトモード用のインパクトカード */
+@media (prefers-color-scheme: light) {
+  .impact-card {
+    background: rgba(var(--accent-color, #4CAF50), 0.1);
+    color: #333;
+    border: 2px solid var(--accent-color, #4CAF50);
+    box-shadow: 0 8px 24px rgba(var(--accent-color, #4CAF50), 0.2);
+  }
+  
+  .impact-card i {
+    color: var(--accent-color, #4CAF50);
+  }
+}
+
+/* 強制的にライトモード対応（デフォルト） */
+.research .impact-card {
+  background: rgba(var(--accent-color, #4CAF50), 0.1) !important;
+  color: #333 !important;
+  border: 2px solid var(--accent-color, #4CAF50);
+  box-shadow: 0 8px 24px rgba(var(--accent-color, #4CAF50), 0.2);
+}
+
+.research .impact-card i {
+  color: var(--accent-color, #4CAF50) !important;
+}
+
+/* ダークモード時のみグラデーション背景 */
+@media (prefers-color-scheme: dark) {
+  .research .impact-card {
+    background: linear-gradient(135deg, var(--accent-color, #4CAF50), rgba(var(--accent-color, #4CAF50), 0.8)) !important;
+    color: white !important;
+    border: none;
+    box-shadow: 0 8px 24px rgba(var(--accent-color, #4CAF50), 0.3);
+  }
+  
+  .research .impact-card i {
+    color: white !important;
+    opacity: 0.9;
+  }
 }
 
 /* セクションフッター */

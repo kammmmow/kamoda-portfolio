@@ -485,6 +485,7 @@
   text-align: center;
   color: rgba(255, 255, 255, 0.7);
   animation: fadeInUp 0.8s ease-out 0.8s both;
+  z-index: 10;
 }
 
 @keyframes fadeInUp {
@@ -503,6 +504,7 @@
   margin-bottom: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 2px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .scroll-arrow {
@@ -564,6 +566,15 @@
   .image-frame {
     width: 300px;
     height: 300px;
+  }
+  
+  /* スクロールインジケーターをモバイルで調整 */
+  .scroll-indicator {
+    bottom: 1rem;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
   }
   
   /* モバイルでは一部エフェクトを無効化 */

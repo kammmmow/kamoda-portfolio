@@ -40,7 +40,7 @@ const Research = () => {
         { name: "開発", completed: true },
         { name: "テスト", completed: true },
         { name: "論文執筆", completed: true },
-        { name: "国際学会発表", completed: true, active: true }
+        { name: "国際学会発表", completed: true }
       ],
       keyFeatures: [
         "Raspberry Pi活用",
