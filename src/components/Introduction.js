@@ -141,21 +141,6 @@ const Introduction = () => {
                 学部をGPA3.92（239人中2位）で早期卒業し、現在は中央大学大学院 経済学研究科に所属しています。
               </p>
             </div>
-
-            <div className="intro-stats">
-              <div className="stat-item">
-                <div className="stat-number">3.92</div>
-                <div className="stat-label">GPA</div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-number">2nd</div>
-                <div className="stat-label">Class Rank</div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-number">1.5</div>
-                <div className="stat-label">Years Coding</div>
-              </div>
-            </div>
           </div>
 
           {/* 右側：画像エリア */}

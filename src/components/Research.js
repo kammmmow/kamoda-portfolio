@@ -209,24 +209,6 @@ const Research = () => {
           </div>
         ))}
       </div>
-
-      {/* セクションフッター */}
-      <div className="research-footer">
-        <div className="research-stats">
-          <div className="stat-item">
-            <div className="stat-number">2</div>
-            <div className="stat-label">進行中プロジェクト</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-number">1</div>
-            <div className="stat-label">国際学会発表</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-number">複数</div>
-            <div className="stat-label">使用技術</div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

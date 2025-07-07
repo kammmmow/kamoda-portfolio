@@ -57,6 +57,10 @@ const Header = ({ openModal }) => {
             <i className="fas fa-home"></i>
             ホーム
           </li>
+          <li onClick={() => scrollToSection('education-section')}>
+            <i className="fas fa-graduation-cap"></i>
+            学歴
+          </li>
           <li onClick={() => scrollToSection('research-section')}>
             <i className="fas fa-microscope"></i>
             研究内容
@@ -64,10 +68,6 @@ const Header = ({ openModal }) => {
           <li onClick={() => scrollToSection('achievements-section')}>
             <i className="fas fa-trophy"></i>
             実績・活動
-          </li>
-          <li onClick={() => scrollToSection('education-section')}>
-            <i className="fas fa-graduation-cap"></i>
-            学歴
           </li>
           <li onClick={() => scrollToSection('certifications-section')}>
             <i className="fas fa-certificate"></i>
