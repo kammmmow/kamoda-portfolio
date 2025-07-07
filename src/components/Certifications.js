@@ -1,305 +1,182 @@
-// src/components/Certifications.js
-import React, { useState, useEffect } from 'react';
+// src/components/Certifications.js - 重複要素整理版
+import React, { useState } from 'react';
 import '../styles/Certifications.css';
 
 const Certifications = () => {
   const [activeCategory, setActiveCategory] = useState('all');
-  const [visibleItems, setVisibleItems] = useState([]);
-  const [isVisible, setIsVisible] = useState(false);
-
-  // スクロール時のアニメーション
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const section = document.querySelector('.certifications');
-    if (section) observer.observe(section);
-
-    return () => observer.disconnect();
-  }, []);
-
-  // フィルター変更時のアニメーション
-  useEffect(() => {
-    setVisibleItems([]);
-    const timer = setTimeout(() => {
-      const currentCerts = getCertificationsByCategory(activeCategory);
-      currentCerts.forEach((_, index) => {
-        setTimeout(() => {
-          setVisibleItems(prev => [...new Set([...prev, index])]);
-        }, index * 80);
-      });
-    }, 100);
-    
-    return () => clearTimeout(timer);
-  }, [activeCategory]);
-
+  
+  // 資格データをアピール力順に並び替え
   const certificationsData = {
-    highschool: [
+    university: [
+      // 大学取得資格（アピール力順）
       {
-        name: '全商 情報処理検定ビジネス情報部門１級',
-        category: 'IT・情報',
-        level: '1級',
-        icon: 'fas fa-laptop-code',
-        color: '#2196F3'
+        text: 'IPA主催 基本情報技術者試験',
+        appeal: 'high',
+        date: '2023年',
+        description: '情報技術の基礎知識を証明する国家資格'
       },
       {
-        name: '全商 商業経済検定試験１級',
-        category: 'ビジネス',
-        level: '1級', 
-        icon: 'fas fa-chart-line',
-        color: '#4CAF50'
+        text: 'IPA主催 情報セキュリティマネジメント試験',
+        appeal: 'high',
+        date: '2023年',
+        description: '情報セキュリティ管理の専門知識を証明'
       },
       {
-        name: '全商 英語検定試験１級',
-        category: '語学',
-        level: '1級',
-        icon: 'fas fa-globe',
-        color: '#FF9800'
+        text: '２級ファイナンシャル・プランニング技能士（一部合格）',
+        appeal: 'medium',
+        date: '2024年',
+        description: '金融・税制・不動産等の専門知識'
       },
       {
-        name: '全経 簿記能力検定試験３級',
-        category: '会計',
-        level: '3級',
-        icon: 'fas fa-calculator',
-        color: '#9C27B0'
+        text: '３級ファイナンシャル・プランニング技能士',
+        appeal: 'medium',
+        date: '2023年',
+        description: 'ファイナンシャルプランニングの基礎知識'
       },
       {
-        name: '文章読解・作成能力検定 準二級',
-        category: '文書',
-        level: '準2級',
-        icon: 'fas fa-pen-fancy',
-        color: '#E91E63'
+        text: '個人情報管理士（特定）',
+        appeal: 'low',
+        date: '2022年',
+        description: '個人情報保護の基礎知識'
       },
       {
-        name: 'IPA主催 ITパスポート試験',
-        category: 'IT・情報',
-        level: '国家資格',
-        icon: 'fas fa-shield-alt',
-        color: '#2196F3',
-        special: true
+        text: '文部科学省後援 ビジネス実務マナー検定２級',
+        appeal: 'low',
+        date: '2024年',
+        description: 'ビジネスマナーとコミュニケーション能力'
       }
     ],
-    university: [
+    highschool: [
+      // 高校取得資格（現在の順序を維持）
       {
-        name: '個人情報管理士（特定）',
-        category: '法務・コンプライアンス',
-        level: '特定',
-        icon: 'fas fa-user-shield',
-        color: '#795548'
+        text: '全商 情報処理検定ビジネス情報部門１級',
+        appeal: 'medium',
+        date: '2020年',
+        description: 'ビジネス情報処理の専門知識'
       },
       {
-        name: 'IPA主催 基本情報技術者試験',
-        category: 'IT・情報',
-        level: '国家資格',
-        icon: 'fas fa-microchip',
-        color: '#2196F3',
-        special: true
+        text: '全商 商業経済検定試験１級',
+        appeal: 'medium',
+        date: '2020年',
+        description: '商業・経済の基礎知識'
       },
       {
-        name: 'IPA主催 情報セキュリティマネジメント試験',
-        category: 'IT・情報',
-        level: '国家資格',
-        icon: 'fas fa-lock',
-        color: '#2196F3',
-        special: true
+        text: '全商 英語検定試験１級',
+        appeal: 'medium',
+        date: '2020年',
+        description: '商業英語の実践的スキル'
       },
       {
-        name: '３級ファイナンシャル・プランニング技能士',
-        category: '金融',
-        level: '3級',
-        icon: 'fas fa-coins',
-        color: '#FF5722'
+        text: '全経 簿記能力検定試験３級',
+        appeal: 'low',
+        date: '2019年',
+        description: '簿記・会計の基礎知識'
       },
       {
-        name: '２級ファイナンシャル・プランニング技能士（一部合格）',
-        category: '金融',
-        level: '2級（一部）',
-        icon: 'fas fa-coins',
-        color: '#FF5722',
-        partial: true
+        text: '文章読解・作成能力検定 準二級',
+        appeal: 'low',
+        date: '2020年',
+        description: '文章理解・作成能力'
       },
       {
-        name: '文部科学省後援 ビジネス実務マナー検定２級',
-        category: 'ビジネス',
-        level: '2級',
-        icon: 'fas fa-handshake',
-        color: '#4CAF50'
+        text: 'IPA主催 ITパスポート試験',
+        appeal: 'medium',
+        date: '2020年',
+        description: 'IT基礎知識の国家資格'
       }
     ]
   };
 
-  const getCertificationsByCategory = (category) => {
-    if (category === 'all') {
-      return [
-        ...certificationsData.highschool.map(cert => ({ ...cert, period: 'highschool' })),
-        ...certificationsData.university.map(cert => ({ ...cert, period: 'university' }))
-      ];
-    }
-    return certificationsData[category].map(cert => ({ ...cert, period: category }));
-  };
-
-  const categories = [
-    { id: 'all', name: 'すべて', icon: 'fas fa-list', count: Object.values(certificationsData).flat().length },
-    { id: 'highschool', name: '高校時代', icon: 'fas fa-school', count: certificationsData.highschool.length },
-    { id: 'university', name: '大学時代', icon: 'fas fa-university', count: certificationsData.university.length }
+  // すべての資格を統一フォーマットで格納
+  const allCertifications = [
+    ...certificationsData.university.map(cert => ({ ...cert, category: 'university', period: '大学時代' })),
+    ...certificationsData.highschool.map(cert => ({ ...cert, category: 'highschool', period: '高校時代' }))
   ];
 
-  const currentCertifications = getCertificationsByCategory(activeCategory);
+  // 表示する資格をフィルタリング
+  const filteredCertifications = 
+    activeCategory === 'all' 
+      ? allCertifications
+      : allCertifications.filter(cert => cert.category === activeCategory);
 
-  // 統計データ
-  const stats = {
-    total: Object.values(certificationsData).flat().length,
-    national: Object.values(certificationsData).flat().filter(cert => cert.special).length,
-    categories: [...new Set(Object.values(certificationsData).flat().map(cert => cert.category))].length,
-    level1: Object.values(certificationsData).flat().filter(cert => cert.level?.includes('1級')).length
+  // カテゴリーボタンのデータ
+  const categories = [
+    { id: 'all', name: 'すべて', icon: 'fas fa-list' },
+    { id: 'university', name: '大学時代', icon: 'fas fa-university' },
+    { id: 'highschool', name: '高校時代', icon: 'fas fa-school' }
+  ];
+
+  // アピール力に応じたスタイルを取得
+  const getAppealStyle = (appeal) => {
+    const styles = {
+      high: { className: 'appeal-high', color: '#e74c3c', label: '重要' },
+      medium: { className: 'appeal-medium', color: '#f39c12', label: '標準' },
+      low: { className: 'appeal-low', color: '#95a5a6', label: '基礎' }
+    };
+    return styles[appeal] || styles.low;
   };
 
   return (
-    <div className={`certifications ${isVisible ? 'visible' : ''}`}>
-      {/* セクションヘッダー */}
-      <div className="certifications-header">
-        <div className="certifications-badge">
-          <i className="fas fa-certificate"></i>
-          <span>Certifications</span>
-        </div>
-        <h2 className="certifications-title">資格</h2>
-        <p className="certifications-subtitle">
-          継続的な学習と自己研鑽の証
-        </p>
-      </div>
-
-      {/* 背景エフェクト */}
-      <div className="certifications-background">
-        <div className="cert-elements">
-          <div className="cert-element element-1"></div>
-          <div className="cert-element element-2"></div>
-          <div className="cert-element element-3"></div>
-        </div>
-      </div>
-
-      <div className="certifications-container">
-        {/* 統計カード */}
-        <div className="certifications-stats">
-          <div className="stat-card">
-            <div className="stat-icon">
-              <i className="fas fa-certificate"></i>
-            </div>
-            <div className="stat-content">
-              <div className="stat-number">{stats.total}</div>
-              <div className="stat-label">総取得数</div>
-            </div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-icon">
-              <i className="fas fa-medal"></i>
-            </div>
-            <div className="stat-content">
-              <div className="stat-number">{stats.national}</div>
-              <div className="stat-label">国家資格</div>
-            </div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-icon">
-              <i className="fas fa-tags"></i>
-            </div>
-            <div className="stat-content">
-              <div className="stat-number">{stats.categories}</div>
-              <div className="stat-label">分野数</div>
-            </div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-icon">
-              <i className="fas fa-trophy"></i>
-            </div>
-            <div className="stat-content">
-              <div className="stat-number">{stats.level1}</div>
-              <div className="stat-label">1級資格</div>
-            </div>
-          </div>
-        </div>
-
-        {/* フィルターナビゲーション */}
+    <div className="certifications">
+      <h2 className="certifications-title">資格・検定</h2>
+      <div className="certifications-card">
+        {/* カテゴリフィルター */}
         <div className="certifications-filter">
-          {categories.map((category) => (
+          {categories.map(category => (
             <button
               key={category.id}
               className={`filter-button ${activeCategory === category.id ? 'active' : ''}`}
               onClick={() => setActiveCategory(category.id)}
             >
-              <div className="filter-icon">
-                <i className={category.icon}></i>
-              </div>
-              <div className="filter-text">
-                <span className="filter-name">{category.name}</span>
-                <span className="filter-count">{category.count}件</span>
-              </div>
+              <i className={category.icon}></i>
+              <span>{category.name}</span>
             </button>
           ))}
         </div>
 
-        {/* 資格カードグリッド */}
-        <div className="certifications-content">
-          <div className="certifications-grid">
-            {currentCertifications.map((cert, index) => (
-              <div
-                key={`${cert.period}-${index}`}
-                className={`certification-card ${visibleItems.includes(index) ? 'visible' : ''} ${cert.special ? 'special' : ''} ${cert.partial ? 'partial' : ''}`}
-                style={{ 
-                  '--cert-color': cert.color,
-                  '--animation-delay': `${index * 0.08}s`
-                }}
-              >
-                {/* カードヘッダー */}
-                <div className="card-header">
-                  <div className="card-icon">
-                    <i className={cert.icon}></i>
-                  </div>
-                  <div className="card-badges">
-                    <span className={`period-badge ${cert.period}`}>
-                      {cert.period === 'highschool' ? '高校' : '大学'}
-                    </span>
-                    <span className={`level-badge ${cert.special ? 'special' : cert.partial ? 'partial' : 'normal'}`}>
-                      {cert.level}
-                    </span>
-                  </div>
-                </div>
-
-                {/* カードコンテンツ */}
-                <div className="card-content">
-                  <h3 className="cert-name">{cert.name}</h3>
-                  <div className="cert-category">
-                    <i className="fas fa-tag"></i>
-                    <span>{cert.category}</span>
-                  </div>
-                </div>
-
-                {/* 特別なバッジ */}
-                {cert.special && (
-                  <div className="special-indicator">
-                    <i className="fas fa-star"></i>
-                    <span>国家資格</span>
-                  </div>
-                )}
-                {cert.partial && (
-                  <div className="partial-indicator">
-                    <i className="fas fa-clock"></i>
-                    <span>一部合格</span>
-                  </div>
-                )}
-
-                {/* カード装飾 */}
-                <div className="card-decoration"></div>
-              </div>
-            ))}
+        {/* 資格統計サマリー */}
+        <div className="certifications-summary">
+          <div className="summary-stats">
+            <div className="stat-item">
+              <div className="stat-number">{certificationsData.university.length}</div>
+              <div className="stat-label">大学時代取得</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-number">{certificationsData.highschool.length}</div>
+              <div className="stat-label">高校時代取得</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-number">{allCertifications.filter(cert => cert.appeal === 'high').length}</div>
+              <div className="stat-label">重要資格</div>
+            </div>
           </div>
+        </div>
+
+        {/* 資格リスト */}
+        <div className="certifications-list">
+          {filteredCertifications.map((cert, index) => {
+            const appealStyle = getAppealStyle(cert.appeal);
+            
+            return (
+              <div key={index} className={`certification-item ${cert.category} ${appealStyle.className}`}>
+                <div className="certification-header">
+                  <div className="certification-badge">
+                    <i className={cert.category === 'university' ? 'fas fa-university' : 'fas fa-school'}></i>
+                    <span>{cert.period}</span>
+                  </div>
+                  <div className="appeal-indicator" style={{ color: appealStyle.color }}>
+                    <i className="fas fa-circle"></i>
+                    <span>{appealStyle.label}</span>
+                  </div>
+                </div>
+                <div className="certification-content">
+                  <h4 className="certification-title">{cert.text}</h4>
+                  <p className="certification-description">{cert.description}</p>
+                  <div className="certification-date">取得: {cert.date}</div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

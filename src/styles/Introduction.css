@@ -145,7 +145,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 2rem;
+  padding: 0 2rem 6rem 2rem; /* 下パディングを追加：スクロールインジケーター用スペース */
   z-index: 1;
 }
 
@@ -154,7 +154,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
-  margin: 2rem 0;
+  margin: 2rem 0 4rem 0; /* 下マージンを増加：2rem → 4rem */
 }
 
 /* テキストエリア */
@@ -210,7 +210,7 @@
 /* タイピングアニメーション - シンプル化 */
 .typing-container {
   font-size: 1.5rem;
-  margin: 2rem 0;
+  margin: 1.5rem 0; /* 2rem → 1.5rem */
   height: 2rem;
   display: flex;
   align-items: center;
@@ -251,7 +251,7 @@
 
 /* 説明テキスト */
 .intro-description {
-  margin: 2rem 0;
+  margin: 1.5rem 0; /* 2rem → 1.5rem */
   line-height: 1.8;
 }
 
@@ -283,7 +283,7 @@
 .intro-stats {
   display: flex;
   gap: 2rem;
-  margin: 2rem 0;
+  margin: 1.5rem 0; /* 2rem → 1.5rem */
 }
 
 .stat-item {
@@ -320,7 +320,7 @@
 .intro-actions {
   display: flex;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem; /* 2rem → 1.5rem */
 }
 
 .cta-button {
@@ -476,16 +476,23 @@
   transform: scale(1.1);
 }
 
-/* スクロールインジケーター */
+/* スクロールインジケーター - 修正版 */
 .scroll-indicator {
   position: absolute;
-  bottom: 2rem;
+  bottom: 1.5rem; /* 1rem → 1.5rem に変更 */
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.9); /* 0.7 → 0.9 に変更 */
   animation: fadeInUp 0.8s ease-out 0.8s both;
   z-index: 10;
+  /* 視認性向上のため背景を強化 */
+  background: rgba(0, 0, 0, 0.8); /* 0.6 → 0.8 に変更 */
+  padding: 0.8rem 1.5rem; /* 0.5rem 1rem → 0.8rem 1.5rem に変更 */
+  border-radius: 25px; /* 20px → 25px に変更 */
+  backdrop-filter: blur(15px); /* 10px → 15px に変更 */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* 境界線を追加 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* シャドウを追加 */
 }
 
 @keyframes fadeInUp {
@@ -500,15 +507,17 @@
 }
 
 .scroll-text {
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
+  font-size: 0.95rem; /* 0.9rem → 0.95rem に変更 */
+  margin-bottom: 0.6rem; /* 0.5rem → 0.6rem に変更 */
   text-transform: uppercase;
   letter-spacing: 2px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7); /* 0.5 → 0.7 に変更 */
+  font-weight: 600; /* フォントウェイトを追加 */
 }
 
 .scroll-arrow {
   animation: bounce 3s infinite;
+  font-size: 1.1rem; /* サイズを明示的に指定 */
 }
 
 @keyframes bounce {
@@ -537,51 +546,76 @@
     width: 350px;
     height: 350px;
   }
+  
+  /* スクロールインジケーター - タブレット調整 */
+  .scroll-indicator {
+    bottom: 1.8rem; /* タブレット用調整 */
+    padding: 0.7rem 1.3rem;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .intro-content-wrapper {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 2rem;
+    gap: 2rem; /* 3rem → 2rem：大幅縮小 */
   }
   
   .intro-container {
-    padding: 0 1rem;
-    /* スマホでは画像の下にスペースを確保 */
-    padding-bottom: 6rem;
+    padding: 0 1rem 4rem 1rem; /* 5rem → 4rem */
   }
   
   .name-title {
     font-size: 2.5rem;
+    margin: 0.8rem 0; /* 1rem → 0.8rem */
+  }
+  
+  .typing-container {
+    margin: 1rem 0; /* 1.5rem → 1rem */
+  }
+  
+  .intro-description {
+    margin: 1rem 0; /* 1.5rem → 1rem */
   }
   
   .intro-stats {
     justify-content: center;
+    margin: 1rem 0; /* 1.5rem → 1rem */
+    gap: 1.5rem; /* 2rem → 1.5rem */
   }
   
   .intro-actions {
     justify-content: center;
     flex-wrap: wrap;
+    margin-top: 1rem; /* 1.5rem → 1rem */
+    margin-bottom: 1.5rem; /* 2rem → 1.5rem */
   }
   
   .image-frame {
-    width: 300px;
-    height: 300px;
+    width: 280px; /* 300px → 280px */
+    height: 280px; /* 300px → 280px */
   }
   
-  /* スクロールインジケーターをスマホで下部に移動 */
+  /* スクロールインジケーター - モバイル調整 */
   .scroll-indicator {
-    position: relative;
-    bottom: auto;
-    left: auto;
-    transform: none;
-    margin-top: 3rem;
-    background: rgba(0, 0, 0, 0.6);
-    padding: 1rem 1.5rem;
-    border-radius: 25px;
-    backdrop-filter: blur(10px);
-    display: inline-block;
+    bottom: 2rem; /* モバイル用調整 - より安全な位置 */
+    background: rgba(0, 0, 0, 0.85); /* より濃い背景 */
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    backdrop-filter: blur(20px);
+    /* 枠線を強化 */
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  }
+  
+  .scroll-text {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700; /* さらに太く */
+  }
+  
+  .scroll-arrow {
+    font-size: 1.2rem; /* モバイルで少し大きく */
   }
   
   /* モバイルでは一部エフェクトを無効化 */
@@ -592,45 +626,177 @@
 }
 
 @media screen and (max-width: 480px) {
-  .intro-container {
-    padding: 0 0.8rem;
-    /* 小さい画面ではさらにスペースを確保 */
-    padding-bottom: 5rem;
-  }
-  
   .name-title {
     font-size: 2rem;
+    margin: 0.5rem 0; /* 大幅縮小 */
   }
   
   .typing-container {
-    font-size: 1.2rem;
+    font-size: 1.1rem; /* 1.2rem → 1.1rem */
+    margin: 0.8rem 0; /* 1rem → 0.8rem */
   }
   
+  .intro-description {
+    margin: 0.8rem 0; /* 1rem → 0.8rem */
+  }
+  
+  /* 統計情報を効率的に配置 */
   .intro-stats {
-    flex-direction: column;
-    gap: 1rem;
+    display: grid; /* flex → grid に変更 */
+    grid-template-columns: 1fr 1fr; /* 2列配置 */
+    gap: 0.8rem; /* 1rem → 0.8rem */
+    margin: 0.8rem 0; /* 1rem → 0.8rem */
+  }
+  
+  /* 3つ目を中央に配置 */
+  .stat-item:nth-child(3) {
+    grid-column: 1 / -1; /* 全列にまたがる */
+    max-width: 200px; /* 幅制限 */
+    margin: 0 auto; /* 中央配置 */
+  }
+  
+  .stat-item {
+    padding: 0.8rem; /* 1rem → 0.8rem */
+  }
+  
+  .stat-number {
+    font-size: 1.6rem; /* 2rem → 1.6rem */
   }
   
   .cta-button {
-    padding: 0.8rem 1.5rem;
-    font-size: 0.9rem;
+    padding: 0.7rem 1.3rem; /* 0.8rem 1.5rem → 0.7rem 1.3rem */
+    font-size: 0.85rem; /* 0.9rem → 0.85rem */
   }
   
   .image-frame {
-    width: 250px;
-    height: 250px;
+    width: 220px; /* 250px → 220px：大幅縮小 */
+    height: 220px; /* 250px → 220px：大幅縮小 */
   }
   
-  /* スマホでのスクロールインジケーター調整 */
+  .intro-container {
+    padding: 0 1rem 5rem 1rem; /* 6rem → 5rem */
+  }
+  
+  .intro-actions {
+    margin-top: 0.8rem; /* 1rem → 0.8rem */
+    margin-bottom: 2rem; /* 3rem → 2rem：大幅縮小 */
+    gap: 0.8rem; /* 1rem → 0.8rem */
+  }
+  
+  /* スクロールインジケーター - 小画面調整 */
   .scroll-indicator {
-    margin-top: 2rem;
-    padding: 0.8rem 1.2rem;
+    bottom: 2.5rem; /* 最も安全な位置 */
+    background: rgba(0, 0, 0, 0.9); /* 最も濃い背景 */
+    padding: 1rem 1.8rem; /* さらに大きく */
+    border-radius: 35px;
+    /* 最大限の視認性 */
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+      0 8px 24px rgba(0, 0, 0, 0.5),
+      0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .scroll-text {
+    font-size: 0.85rem;
+    font-weight: 800; /* 最も太く */
+    letter-spacing: 1.5px;
+  }
+  
+  .scroll-arrow {
+    font-size: 1.3rem;
+  }
+}
+
+/* 極小画面用（iPhone SE等） - 更なるコンパクト化 */
+@media screen and (max-width: 375px) {
+  .scroll-indicator {
+    bottom: 3rem; /* 最も保守的な位置 */
+    left: 50%;
+    transform: translateX(-50%);
+    /* 画面からはみ出ないよう最大幅を制限 */
+    max-width: calc(100vw - 2rem);
+    width: auto;
+  }
+  
+  .name-title {
+    font-size: 1.8rem; /* さらに縮小 */
+    margin: 0.3rem 0;
+  }
+  
+  .typing-container {
+    font-size: 1rem;
+    margin: 0.6rem 0;
+  }
+  
+  .intro-description {
+    margin: 0.6rem 0;
+    line-height: 1.6; /* 1.8 → 1.6 */
+  }
+  
+  .intro-stats {
+    gap: 0.6rem;
+    margin: 0.6rem 0;
+  }
+  
+  .stat-item {
+    padding: 0.6rem;
+  }
+  
+  .stat-number {
+    font-size: 1.4rem;
+  }
+  
+  .stat-label {
     font-size: 0.8rem;
+  }
+  
+  .image-frame {
+    width: 200px; /* 220px → 200px */
+    height: 200px; /* 220px → 200px */
+  }
+  
+  .intro-actions {
+    margin-top: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cta-button {
+    padding: 0.6rem 1.1rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* 縦向きで高さが低い場合の調整 */
+@media screen and (max-height: 600px) and (orientation: portrait) {
+  .scroll-indicator {
+    bottom: 1rem; /* 高さが低い場合は控えめに */
+    padding: 0.6rem 1.2rem;
   }
   
   .scroll-text {
     font-size: 0.8rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .scroll-arrow {
+    font-size: 1rem;
+  }
+}
+
+/* 横向きの場合の調整 */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  .scroll-indicator {
+    bottom: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .scroll-text {
+    font-size: 0.75rem;
     margin-bottom: 0.3rem;
+  }
+  
+  .scroll-arrow {
+    font-size: 0.9rem;
   }
 }
 
@@ -653,5 +819,10 @@
   .intro {
     opacity: 1;
     transform: none;
+  }
+  
+  .scroll-indicator {
+    opacity: 1;
+    transform: translateX(-50%);
   }
 }

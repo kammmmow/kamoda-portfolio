@@ -1,655 +1,351 @@
-/* モダンなCertifications.css */
+/* src/styles/Certifications.css - 重複要素整理版 */
 .certifications {
-  position: relative;
-  padding: 4rem 2rem;
-  min-height: 100vh;
-  background: linear-gradient(135deg, 
-    #ff9a9e 0%, 
-    #fecfef 50%, 
-    #fecfef 100%);
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 1s ease-out;
-}
-
-.certifications.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* セクションヘッダー */
-.certifications-header {
-  text-align: center;
-  margin-bottom: 4rem;
-  position: relative;
-  z-index: 2;
-}
-
-.certifications-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 0.5rem 1.5rem;
-  border-radius: 50px;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.9rem;
-  font-weight: 500;
-  margin-bottom: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
 .certifications-title {
-  font-size: 3rem;
-  font-weight: 700;
-  color: white;
-  margin: 1rem 0;
-  background: linear-gradient(135deg, #fff 0%, #ff9a9e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.certifications-subtitle {
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.8);
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-/* 背景エフェクト */
-.certifications-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.cert-elements {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.cert-element {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  animation: certFloat 12s ease-in-out infinite;
-}
-
-.element-1 {
-  width: 140px;
-  height: 140px;
-  top: 15%;
-  left: 8%;
-  animation-delay: 0s;
-}
-
-.element-2 {
-  width: 90px;
-  height: 90px;
-  top: 70%;
-  right: 12%;
-  animation-delay: 6s;
-}
-
-.element-3 {
-  width: 110px;
-  height: 110px;
-  bottom: 25%;
-  left: 65%;
-  animation-delay: 3s;
-}
-
-@keyframes certFloat {
-  0%, 100% { 
-    transform: translate3d(0, 0, 0) rotate(0deg);
-    opacity: 0.3;
-  }
-  50% { 
-    transform: translate3d(25px, -30px, 0) rotate(180deg);
-    opacity: 0.6;
-  }
-}
-
-/* コンテナ */
-.certifications-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 2;
-}
-
-/* 統計カード */
-.certifications-stats {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  margin-bottom: 3rem;
-}
-
-.stat-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
-  border-radius: 20px;
-  padding: 1.5rem 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  min-width: 140px;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-}
-
-.stat-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-}
-
-.stat-icon {
-  width: 50px;
-  height: 50px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 1.2rem;
-}
-
-.stat-content {
   text-align: center;
+  margin: 20px 0;
 }
 
-.stat-number {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 0.2rem;
+.certifications-card {
+  background-color: #f8f9fa;
+  border: 1px solid #007bff;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.stat-label {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.8);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-/* フィルターナビゲーション */
+/* 改良されたカテゴリフィルター */
 .certifications-filter {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 3rem;
   flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 25px;
+  justify-content: center;
 }
 
 .filter-button {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  padding: 1rem 1.5rem;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
-  gap: 1rem;
-  color: rgba(255, 255, 255, 0.8);
-  min-width: 150px;
+  gap: 8px;
+  padding: 10px 18px;
+  background-color: #f8f9fa;
+  border: 2px solid #dee2e6;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #6c757d;
+  font-weight: 500;
 }
 
 .filter-button:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.4);
+  background-color: #e9ecef;
+  color: #495057;
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .filter-button.active {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: rgba(255, 255, 255, 0.6);
+  background-color: #007bff;
   color: white;
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #007bff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
 }
 
-.filter-icon {
-  font-size: 1.2rem;
-  flex-shrink: 0;
+.filter-button i {
+  font-size: 0.9rem;
 }
 
-.filter-text {
+/* 資格統計サマリー */
+.certifications-summary {
+  margin-bottom: 25px;
+  padding: 15px;
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+}
+
+.summary-stats {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.filter-name {
-  font-weight: 600;
-  font-size: 0.95rem;
+.summary-stats .stat-item {
+  text-align: center;
+  background: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+  min-width: 100px;
 }
 
-.filter-count {
+.summary-stats .stat-item:hover {
+  transform: translateY(-3px);
+}
+
+.summary-stats .stat-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #007bff;
+  margin-bottom: 5px;
+}
+
+.summary-stats .stat-label {
   font-size: 0.8rem;
-  opacity: 0.8;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-/* コンテンツエリア */
-.certifications-content {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border-radius: 24px;
-  padding: 2.5rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-/* 資格カードグリッド */
-.certifications-grid {
+/* 改良された資格リスト */
+.certifications-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 1.5rem;
+  gap: 20px;
 }
 
-.certification-card {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 16px;
-  padding: 1.5rem;
+.certification-item {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-left: 5px solid;
   position: relative;
-  border: 2px solid transparent;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0;
-  transform: translateY(30px) scale(0.95);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
   overflow: hidden;
 }
 
-.certification-card.visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  animation: slideInUp 0.6s ease-out var(--animation-delay, 0s) both;
+.certification-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  transition: all 0.3s ease;
 }
 
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+.certification-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-.certification-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  border-color: var(--cert-color, #2196F3);
-  box-shadow: 0 15px 35px rgba(var(--cert-color, 33, 150, 243), 0.2);
+/* カテゴリ別のスタイル */
+.certification-item.university {
+  border-left-color: #007bff;
 }
 
-.certification-card.special {
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 255, 255, 0.9));
-  border-color: rgba(255, 215, 0, 0.3);
+.certification-item.highschool {
+  border-left-color: #28a745;
 }
 
-.certification-card.partial {
-  background: linear-gradient(135deg, rgba(255, 152, 0, 0.1), rgba(255, 255, 255, 0.9));
-  border-color: rgba(255, 152, 0, 0.3);
+/* アピール力別のスタイル */
+.certification-item.appeal-high {
+  background: linear-gradient(135deg, #fff5f5, #ffffff);
 }
 
-/* カードヘッダー */
-.card-header {
+.certification-item.appeal-high::before {
+  border-width: 0 20px 20px 0;
+  border-color: transparent #e74c3c transparent transparent;
+}
+
+.certification-item.appeal-medium {
+  background: linear-gradient(135deg, #fffbf0, #ffffff);
+}
+
+.certification-item.appeal-medium::before {
+  border-width: 0 20px 20px 0;
+  border-color: transparent #f39c12 transparent transparent;
+}
+
+.certification-item.appeal-low {
+  background: linear-gradient(135deg, #f8f9fa, #ffffff);
+}
+
+/* 資格アイテムのヘッダー */
+.certification-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 1rem;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
-.card-icon {
-  width: 50px;
-  height: 50px;
-  background: var(--cert-color, #2196F3);
-  border-radius: 12px;
+.certification-badge {
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 1.3rem;
-  box-shadow: 0 6px 15px rgba(var(--cert-color, 33, 150, 243), 0.3);
-  flex-shrink: 0;
+  gap: 6px;
+  background-color: #e9ecef;
+  color: #495057;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.card-badges {
+.certification-item.university .certification-badge {
+  background-color: rgba(0, 123, 255, 0.1);
+  color: #007bff;
+}
+
+.certification-item.highschool .certification-badge {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: #28a745;
+}
+
+.appeal-indicator {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  align-items: flex-end;
-}
-
-.period-badge {
-  padding: 0.3rem 0.8rem;
-  border-radius: 12px;
-  font-size: 0.7rem;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.period-badge.highschool {
-  background: rgba(76, 175, 80, 0.1);
-  color: #4CAF50;
-  border: 1px solid rgba(76, 175, 80, 0.3);
+.appeal-indicator i {
+  font-size: 0.6rem;
 }
 
-.period-badge.university {
-  background: rgba(33, 150, 243, 0.1);
-  color: #2196F3;
-  border: 1px solid rgba(33, 150, 243, 0.3);
+/* 資格コンテンツ */
+.certification-content {
+  position: relative;
+  z-index: 1;
 }
 
-.level-badge {
-  padding: 0.3rem 0.8rem;
-  border-radius: 12px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.level-badge.normal {
-  background: rgba(0, 0, 0, 0.05);
-  color: #666;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.level-badge.special {
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 193, 7, 0.1));
-  color: #FF8F00;
-  border: 1px solid #FFD700;
-}
-
-.level-badge.partial {
-  background: rgba(255, 152, 0, 0.1);
-  color: #FF9800;
-  border: 1px solid rgba(255, 152, 0, 0.3);
-}
-
-/* カードコンテンツ */
-.card-content {
-  margin-bottom: 1rem;
-}
-
-.cert-name {
+.certification-title {
   font-size: 1rem;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 0.8rem;
+  font-weight: 600;
+  color: #343a40;
+  margin-bottom: 8px;
   line-height: 1.4;
 }
 
-.cert-category {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #666;
+.certification-description {
   font-size: 0.85rem;
-  background: rgba(var(--cert-color, 33, 150, 243), 0.05);
-  padding: 0.4rem 0.8rem;
-  border-radius: 8px;
-  border: 1px solid rgba(var(--cert-color, 33, 150, 243), 0.1);
+  color: #6c757d;
+  line-height: 1.5;
+  margin-bottom: 10px;
 }
 
-.cert-category i {
-  color: var(--cert-color, #2196F3);
-  font-size: 0.7rem;
-}
-
-/* 特別なインジケーター */
-.special-indicator,
-.partial-indicator {
-  position: absolute;
-  top: 0.8rem;
-  right: 0.8rem;
-  padding: 0.3rem 0.6rem;
-  border-radius: 12px;
-  font-size: 0.6rem;
-  font-weight: 600;
+.certification-date {
+  font-size: 0.8rem;
+  color: #adb5bd;
+  font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 0.3rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  z-index: 2;
+  gap: 5px;
 }
 
-.special-indicator {
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 193, 7, 0.1));
-  color: #FF8F00;
-  border: 1px solid #FFD700;
+.certification-date::before {
+  content: '📅';
+  font-size: 0.9rem;
 }
 
-.partial-indicator {
-  background: rgba(255, 152, 0, 0.1);
-  color: #FF9800;
-  border: 1px solid rgba(255, 152, 0, 0.3);
+/* アニメーション効果 */
+.certification-item {
+  animation: fadeInScale 0.6s ease-in-out;
 }
 
-/* カード装飾 */
-.card-decoration {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 80px;
-  height: 80px;
-  background: radial-gradient(circle, rgba(var(--cert-color, 33, 150, 243), 0.1), transparent);
-  border-radius: 50%;
-  transform: translate(40%, 40%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+.certification-item:nth-child(odd) {
+  animation-delay: 0.1s;
 }
 
-.certification-card:hover .card-decoration {
-  opacity: 1;
+.certification-item:nth-child(even) {
+  animation-delay: 0.2s;
 }
 
-/* レスポンシブデザイン（スマートフォン重視） */
-@media screen and (max-width: 480px) {
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* レスポンシブ対応 */
+@media screen and (max-width: 768px) {
   .certifications {
-    padding: 2rem 0.8rem;
+    padding: 15px;
   }
   
-  .certifications-title {
-    font-size: 1.8rem;
-  }
-  
-  .certifications-stats {
-    grid-template-columns: 1fr;
-    gap: 0.8rem;
-  }
-  
-  .stat-card {
-    padding: 1rem;
+  .certifications-card {
+    padding: 15px;
+    margin: 5px;
   }
   
   .filter-button {
-    padding: 0.8rem 1.2rem;
-    min-width: auto;
-  }
-  
-  .filter-text {
-    align-items: center;
-  }
-  
-  .certifications-content {
-    padding: 1rem;
-  }
-  
-  .certification-card {
-    padding: 1rem;
-  }
-  
-  .card-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 1.1rem;
-  }
-  
-  .cert-name {
-    font-size: 0.9rem;
-    line-height: 1.3;
-  }
-  
-  .cert-category {
+    padding: 8px 15px;
     font-size: 0.8rem;
-    padding: 0.3rem 0.6rem;
   }
   
-  .period-badge,
-  .level-badge {
-    font-size: 0.65rem;
-    padding: 0.25rem 0.6rem;
+  .certifications-list {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .certification-item {
+    padding: 15px;
+  }
+  
+  .certification-title {
+    font-size: 0.9rem;
+  }
+  
+  .certification-description {
+    font-size: 0.8rem;
+  }
+  
+  .summary-stats {
+    gap: 15px;
+  }
+  
+  .summary-stats .stat-item {
+    min-width: 80px;
+    padding: 10px 15px;
+  }
+  
+  .summary-stats .stat-number {
+    font-size: 1.5rem;
   }
 }
 
-/* アクセシビリティ対応 */
-@media (prefers-reduced-motion: reduce) {
-  .certifications,
-  .certification-card,
-  .stat-card {
-    animation: none;
-    transition: none;
-  }
-  
-  .cert-element {
-    animation: none;
-  }
-  
-  .certifications {
-    opacity: 1;
-    transform: none;
-  }
-  
-  .certification-card {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* 高コントラストモード対応 */
-@media (prefers-contrast: high) {
-  .certification-card {
-    border: 2px solid #000;
-    background: #fff;
-  }
-  
-  .cert-name {
-    color: #000;
-    font-weight: 800;
-  }
-  
-  .cert-category {
-    color: #000;
-    border: 1px solid #000;
-  }
-}
-@media (max-width: 768px) {
-  .certifications {
-    padding: 3rem 1rem;
-  }
-  
-  .certifications-title {
-    font-size: 2.2rem;
-  }
-  
-  .certifications-subtitle {
-    font-size: 1rem;
-  }
-  
-  .certifications-stats {
-    gap: 1rem;
-    grid-template-columns: repeat(2, 1fr);
-    display: grid;
-  }
-  
-  .stat-card {
-    padding: 1rem 1.5rem;
-    min-width: auto;
+@media screen and (max-width: 480px) {
+  .certification-header {
     flex-direction: column;
-    text-align: center;
-    gap: 0.5rem;
-  }
-  
-  .stat-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
-  }
-  
-  .stat-number {
-    font-size: 1.4rem;
+    align-items: flex-start;
+    gap: 8px;
   }
   
   .certifications-filter {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.8rem;
+    gap: 8px;
   }
   
   .filter-button {
-    width: 100%;
-    max-width: 300px;
-    justify-content: center;
+    padding: 6px 12px;
+    font-size: 0.75rem;
   }
   
-  .certifications-content {
-    padding: 1.5rem;
-    border-radius: 20px;
-  }
-  
-  .certifications-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  .certification-card {
-    padding: 1.2rem;
-  }
-  
-  .card-header {
+  .summary-stats {
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    gap: 1rem;
+    gap: 10px;
   }
   
-  .card-badges {
-    flex-direction: row;
-    align-items: center;
-  }
-  
-  .cert-name {
-    font-size: 0.95rem;
-    text-align: center;
-  }
-  
-  .special-indicator,
-  .partial-indicator {
-    position: static;
-    margin-top: 0.5rem;
-    align-self: center;
-  }
-  
-  /* モバイルで背景エフェクトを軽量化 */
-  .cert-element {
-    display: none;
+  .summary-stats .stat-item {
+    min-width: 120px;
   }
 }
