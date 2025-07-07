@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/kamoda-portfolio/static/css/main.4cf31925.css",
+    "main.css": "/kamoda-portfolio/static/css/main.b2938cf4.css",
     "main.js": "/kamoda-portfolio/static/js/main.494fe257.js",
     "static/js/453.51228dbf.chunk.js": "/kamoda-portfolio/static/js/453.51228dbf.chunk.js",
     "static/media/mepic2.jpeg": "/kamoda-portfolio/static/media/mepic2.0fc7423891fb08c833e1.jpeg",
@@ -10,12 +10,12 @@
     "static/media/logo2.png": "/kamoda-portfolio/static/media/logo2.975cf02e1c56c516a18d.png",
     "static/media/Background.jpg": "/kamoda-portfolio/static/media/Background.b5f11b2e8302403e036e.jpg",
     "index.html": "/kamoda-portfolio/index.html",
-    "main.4cf31925.css.map": "/kamoda-portfolio/static/css/main.4cf31925.css.map",
+    "main.b2938cf4.css.map": "/kamoda-portfolio/static/css/main.b2938cf4.css.map",
     "main.494fe257.js.map": "/kamoda-portfolio/static/js/main.494fe257.js.map",
     "453.51228dbf.chunk.js.map": "/kamoda-portfolio/static/js/453.51228dbf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4cf31925.css",
+    "static/css/main.b2938cf4.css",
     "static/js/main.494fe257.js"
   ]
 }

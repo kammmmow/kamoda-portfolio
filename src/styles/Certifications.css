@@ -1,4 +1,4 @@
-/* src/styles/Certifications.css - 完全版: 背景統一化 */
+/* src/styles/Certifications.css - 完全版: 背景統一化 + 文字色改善 */
 
 /* 資格セクション全体 - グラデーション背景に変更 */
 .certifications {
@@ -105,7 +105,7 @@
   font-size: 0.9rem;
 }
 
-/* 資格統計サマリー */
+/* 資格統計サマリー - !important付き最強版 */
 .certifications-summary {
   margin-bottom: 25px;
   padding: 15px;
@@ -124,34 +124,128 @@
   flex-wrap: wrap;
 }
 
+/* !important付きで他のスタイルを完全にオーバーライド */
 .summary-stats .stat-item {
   text-align: center;
-  background: rgba(255, 255, 255, 0.15);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25) !important;
+  color: #1a365d !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
   padding: 15px 20px;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
   transition: transform 0.2s ease;
   min-width: 100px;
 }
 
 .summary-stats .stat-item:hover {
   transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.35) !important;
 }
 
 .summary-stats .stat-number {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #f093fb;
+  color: #6b46c1 !important;
   margin-bottom: 5px;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 .summary-stats .stat-label {
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: #2d3748 !important;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  font-weight: 600;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+/* パフォーマンスモードでも確実に適用されるように */
+.performance-mode .summary-stats .stat-item {
+  background: rgba(255, 255, 255, 0.25) !important;
+  color: #1a365d !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.performance-mode .summary-stats .stat-number {
+  color: #6b46c1 !important;
+}
+
+.performance-mode .summary-stats .stat-label {
+  color: #2d3748 !important;
+}
+
+/* フィルターボタンの色も改善（!important付き） */
+.filter-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: rgba(40, 44, 52, 0.9) !important; /* 濃いグレーに変更 */
+  font-weight: 500;
+}
+
+.filter-button:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+  color: #1a202c !important; /* さらに濃い色に */
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.filter-button.active {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #667eea !important;
+  border-color: rgba(255, 255, 255, 0.9) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+/* パフォーマンスモードでも確実に適用 */
+.performance-mode .filter-button {
+  color: rgba(40, 44, 52, 0.9) !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+.performance-mode .filter-button:hover {
+  color: #1a202c !important;
+  background: rgba(255, 255, 255, 0.25) !important;
+  transform: none !important; /* パフォーマンスモードでは動かさない */
+}
+
+.performance-mode .filter-button.active {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #667eea !important;
+}
+
+/* レスポンシブ対応時も確実に適用 */
+@media screen and (max-width: 768px) {
+  .summary-stats .stat-item {
+    min-width: 80px;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.3) !important;
+  }
+  
+  .performance-mode .summary-stats .stat-item {
+    background: rgba(255, 255, 255, 0.3) !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .summary-stats .stat-item {
+    min-width: 120px;
+    background: rgba(255, 255, 255, 0.35) !important;
+  }
+  
+  .performance-mode .summary-stats .stat-item {
+    background: rgba(255, 255, 255, 0.35) !important;
+  }
 }
 
 /* 改良された資格リスト */
@@ -380,6 +474,8 @@
   .summary-stats .stat-item {
     min-width: 80px;
     padding: 10px 15px;
+    /* モバイルでもコントラストを保持 */
+    background: rgba(255, 255, 255, 0.3);
   }
   
   .summary-stats .stat-number {
@@ -415,5 +511,7 @@
   
   .summary-stats .stat-item {
     min-width: 120px;
+    /* 小さな画面でも見やすく */
+    background: rgba(255, 255, 255, 0.35);
   }
 }
