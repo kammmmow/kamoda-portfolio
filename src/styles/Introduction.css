@@ -718,3 +718,139 @@
     filter: none !important;
   }
 }
+
+/* ===========================================
+   パフォーマンス案内のスタイル
+   =========================================== */
+
+.performance-tip-overlay {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  animation: tipFadeIn 0.5s ease-out;
+}
+
+.performance-tip {
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  padding: 16px 20px;
+  max-width: 280px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.tip-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.tip-icon {
+  color: #4CAF50;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.tip-text {
+  flex: 1;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #333;
+}
+
+.tip-text strong {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #2c3e50;
+}
+
+.tip-text span {
+  color: #555;
+}
+
+.tip-close {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 4px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 8px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tip-close:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: #666;
+}
+
+/* 矢印（右上のパフォーマンス設定ボタンを指す） */
+.tip-arrow {
+  position: absolute;
+  top: -8px;
+  right: 20px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid rgba(255, 255, 255, 0.95);
+}
+
+@keyframes tipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* レスポンシブ対応 */
+@media screen and (max-width: 768px) {
+  .performance-tip-overlay {
+    position: fixed;
+    top: auto;
+    bottom: 100px;
+    left: 15px;
+    right: 15px;
+    z-index: 1001;
+  }
+  
+  .performance-tip {
+    max-width: none;
+    padding: 14px 16px;
+    text-align: left;
+  }
+  
+  .tip-text {
+    font-size: 0.8rem;
+  }
+  
+  .tip-arrow {
+    display: none; /* モバイルでは矢印を非表示 */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .performance-tip {
+    padding: 12px 14px;
+  }
+  
+  .tip-text {
+    font-size: 0.75rem;
+  }
+}
