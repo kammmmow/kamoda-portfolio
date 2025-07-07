@@ -1,4 +1,5 @@
-/* src/styles/PerformanceToggle.css */
+/* src/styles/PerformanceToggle.css - 超シンプル版: ワンクリック切り替えのみ */
+
 .performance-toggle-container {
   position: fixed;
   top: 80px;
@@ -6,310 +7,142 @@
   z-index: 999;
 }
 
-/* メインボタン */
-.performance-main-button {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+/* メイントグルボタン - シンプルで分かりやすく */
+.performance-toggle-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 15px;
   border: none;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  font-size: 1.2rem;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  overflow: hidden;
+}
+
+/* 通常モード時のスタイル */
+.performance-toggle-button.normal-mode {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.performance-toggle-button.normal-mode:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #5a6fd8 0%, #6b4190 100%);
+}
+
+/* パフォーマンスモード時のスタイル */
+.performance-toggle-button.performance-mode {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+}
+
+.performance-toggle-button.performance-mode:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+  background: linear-gradient(135deg, #43A047 0%, #388E3C 100%);
+}
+
+/* ボタン内容 */
+.button-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.button-content i {
+  font-size: 1.3rem;
+  margin-bottom: 1px;
+}
+
+.mode-indicator {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.performance-main-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(135deg, #5a6fd8 0%, #6b4190 100%);
+.mode-text {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
-.performance-main-button.active {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+/* 状態インジケーター（小さなドット） */
+.status-dot {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.8);
 }
 
-/* ツールチップ */
+.status-dot.normal {
+  background: #FF9800; /* オレンジ：通常モード */
+}
+
+.status-dot.performance {
+  background: #8BC34A; /* 明るい緑：パフォーマンスモード */
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* ツールチップ - シンプルで分かりやすく */
 .tooltip {
   position: absolute;
   top: 50%;
-  right: 60px;
+  right: 70px;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
   color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: 10px 14px;
+  border-radius: 8px;
   font-size: 0.8rem;
   white-space: nowrap;
   opacity: 0;
-  animation: tooltipFadeIn 0.2s ease forwards;
+  animation: tooltipFadeIn 0.3s ease forwards;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
 }
 
 .tooltip::after {
   content: '';
   position: absolute;
   top: 50%;
-  right: -5px;
+  right: -6px;
   transform: translateY(-50%);
-  border: 5px solid transparent;
-  border-left-color: rgba(0, 0, 0, 0.8);
+  border: 6px solid transparent;
+  border-left-color: rgba(0, 0, 0, 0.9);
+}
+
+.tooltip strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #fff;
+}
+
+.tooltip small {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.3;
 }
 
 @keyframes tooltipFadeIn {
   to {
     opacity: 1;
   }
-}
-
-/* 設定パネル */
-.performance-panel {
-  position: absolute;
-  top: 60px;
-  right: 0;
-  width: 350px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  opacity: 0;
-  transform: translateY(-10px);
-  pointer-events: none;
-  transition: all 0.3s ease;
-}
-
-.performance-panel.visible {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: all;
-}
-
-/* パネルヘッダー */
-.panel-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 20px 15px;
-  border-bottom: 1px solid #e9ecef;
-}
-
-.panel-header h3 {
-  margin: 0;
-  font-size: 1.1rem;
-  color: #333;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.close-button {
-  width: 30px;
-  height: 30px;
-  border: none;
-  background: #f8f9fa;
-  border-radius: 50%;
-  color: #666;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.close-button:hover {
-  background: #e9ecef;
-  color: #333;
-}
-
-/* パネルコンテンツ */
-.panel-content {
-  padding: 20px;
-}
-
-.mode-option {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 15px 0;
-  border-bottom: 1px solid #f1f3f4;
-}
-
-.mode-option:last-of-type {
-  border-bottom: none;
-}
-
-.option-info {
-  flex: 1;
-  margin-right: 15px;
-}
-
-.option-info h4 {
-  margin: 0 0 8px 0;
-  font-size: 1rem;
-  color: #333;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.option-info p {
-  margin: 0 0 10px 0;
-  font-size: 0.85rem;
-  color: #666;
-  line-height: 1.4;
-}
-
-.feature-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.feature-list li {
-  font-size: 0.8rem;
-  color: #888;
-  line-height: 1.3;
-  margin-bottom: 2px;
-}
-
-/* トグルスイッチ */
-.toggle-switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 24px;
-  flex-shrink: 0;
-}
-
-.toggle-switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: 0.3s;
-  border-radius: 24px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: 0.3s;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-input:checked + .slider {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
-
-/* 現在の状態表示 */
-.current-status {
-  margin: 20px 0 15px;
-  padding: 12px;
-  background: #f8f9fa;
-  border-radius: 8px;
-}
-
-.status-indicator {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.status-indicator.performance {
-  color: #4CAF50;
-}
-
-.status-indicator.normal {
-  color: #667eea;
-}
-
-/* パフォーマンス情報 */
-.performance-info {
-  margin-top: 15px;
-  padding-top: 15px;
-  border-top: 1px solid #e9ecef;
-}
-
-.performance-info h5 {
-  margin: 0 0 10px 0;
-  font-size: 0.9rem;
-  color: #333;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.device-info {
-  display: grid;
-  gap: 6px;
-}
-
-.info-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.8rem;
-  padding: 4px 0;
-}
-
-.info-item span:first-child {
-  color: #666;
-}
-
-.info-item span:last-child {
-  font-weight: 600;
-}
-
-.recommended.performance {
-  color: #4CAF50;
-}
-
-.recommended.normal {
-  color: #667eea;
-}
-
-/* カラーユーティリティ */
-.text-success {
-  color: #4CAF50 !important;
-}
-
-.text-muted {
-  color: #999 !important;
-}
-
-/* オーバーレイ */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.1);
-  z-index: -1;
 }
 
 /* レスポンシブ対応 */
@@ -319,19 +152,17 @@ input:checked + .slider:before {
     right: 15px;
   }
   
-  .performance-main-button {
-    width: 45px;
-    height: 45px;
-    font-size: 1.1rem;
+  .performance-toggle-button {
+    width: 55px;
+    height: 55px;
   }
   
-  .performance-panel {
-    width: 300px;
-    right: -10px;
+  .button-content i {
+    font-size: 1.2rem;
   }
   
-  .panel-content {
-    padding: 15px;
+  .mode-text {
+    font-size: 0.65rem;
   }
   
   .tooltip {
@@ -340,18 +171,16 @@ input:checked + .slider:before {
 }
 
 @media screen and (max-width: 480px) {
-  .performance-panel {
-    width: 280px;
-    right: -20px;
+  .performance-toggle-button {
+    width: 50px;
+    height: 50px;
   }
   
-  .mode-option {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+  .button-content i {
+    font-size: 1.1rem;
   }
   
-  .toggle-switch {
-    align-self: flex-end;
+  .mode-text {
+    font-size: 0.6rem;
   }
 }

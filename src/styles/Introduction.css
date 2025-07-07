@@ -323,16 +323,18 @@
   margin: 2rem 0;
 }
 
+/* 通常モードでもパフォーマンスモードと同じ色を適用 */
 .stat-item {
   text-align: center;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15) !important; /* パフォーマンスモードと同じ背景 */
   padding: 1rem;
   border-radius: 15px;
   backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2) !important; /* パフォーマンスモードと同じボーダー */
   transition: transform 0.2s ease;
   flex: 1;
   will-change: transform;
+  color: rgba(255, 255, 255, 0.9) !important; /* パフォーマンスモードと同じテキスト色 */
 }
 
 .stat-item:hover {
@@ -342,13 +344,13 @@
 .stat-number {
   font-size: 2rem;
   font-weight: 700;
-  color: #a8edea;
+  color: #a8edea !important; /* パフォーマンスモードと同じ数字色 */
   margin-bottom: 0.5rem;
 }
 
 .stat-label {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.8) !important; /* パフォーマンスモードと同じラベル色 */
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -720,7 +722,7 @@
 }
 
 /* ===========================================
-   パフォーマンス案内のスタイル
+   パフォーマンス案内のスタイル - 改善版
    =========================================== */
 
 .performance-tip-overlay {
@@ -738,8 +740,9 @@
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   padding: 16px 20px;
-  max-width: 280px;
+  max-width: 300px;
   border: 1px solid rgba(255, 255, 255, 0.3);
+  margin-left: -220px;
 }
 
 .tip-content {
@@ -749,7 +752,7 @@
 }
 
 .tip-icon {
-  color: #4CAF50;
+  color: #667eea;
   font-size: 1.2rem;
   flex-shrink: 0;
   margin-top: 2px;
@@ -796,16 +799,17 @@
   color: #666;
 }
 
-/* 矢印（右上のパフォーマンス設定ボタンを指す） */
+/* 🎯 修正: 右向き矢印 */
 .tip-arrow {
   position: absolute;
-  top: -8px;
-  right: 20px;
+  top: 50%;
+  right: -8px;
+  transform: translateY(-50%);
   width: 0;
   height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 8px solid rgba(255, 255, 255, 0.95);
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid rgba(255, 255, 255, 0.95);
 }
 
 @keyframes tipFadeIn {
@@ -819,21 +823,21 @@
   }
 }
 
-/* レスポンシブ対応 */
 @media screen and (max-width: 768px) {
   .performance-tip-overlay {
     position: fixed;
-    top: auto;
-    bottom: 100px;
+    top: 130px;
     left: 15px;
     right: 15px;
     z-index: 1001;
+    margin-left: 0;
   }
   
   .performance-tip {
     max-width: none;
     padding: 14px 16px;
     text-align: left;
+    margin-left: 0;
   }
   
   .tip-text {
@@ -841,11 +845,15 @@
   }
   
   .tip-arrow {
-    display: none; /* モバイルでは矢印を非表示 */
+    display: none;
   }
 }
 
 @media screen and (max-width: 480px) {
+  .performance-tip-overlay {
+    top: 120px;
+  }
+  
   .performance-tip {
     padding: 12px 14px;
   }
@@ -853,4 +861,25 @@
   .tip-text {
     font-size: 0.75rem;
   }
+}
+
+/* 🎯 パフォーマンスモード時は案内を非表示 */
+.performance-mode .performance-tip-overlay {
+  display: none !important;
+}
+
+/* 🎯 パフォーマンスモード時は既存の設定をそのまま維持 */
+.performance-mode .stat-item {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: none !important;
+}
+
+.performance-mode .stat-number {
+  color: #a8edea !important;
+}
+
+.performance-mode .stat-label {
+  color: rgba(255, 255, 255, 0.8) !important;
 }

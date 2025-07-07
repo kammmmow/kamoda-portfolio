@@ -248,39 +248,6 @@ const Achievements = () => {
             ))}
           </div>
         </div>
-
-        {/* 統計情報 */}
-        <div className="achievements-stats">
-          <div className="stat-card">
-            <div className="stat-icon">
-              <i className="fas fa-trophy"></i>
-            </div>
-            <div className="stat-content">
-              <div className="stat-number">4</div>
-              <div className="stat-label">カテゴリ</div>
-            </div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-icon">
-              <i className="fas fa-star"></i>
-            </div>
-            <div className="stat-content">
-              <div className="stat-number">
-                {Object.values(achievementsData).reduce((total, category) => total + category.items.length, 0)}
-              </div>
-              <div className="stat-label">総実績数</div>
-            </div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-icon">
-              <i className="fas fa-award"></i>
-            </div>
-            <div className="stat-content">
-              <div className="stat-number">4</div>
-              <div className="stat-label">奨学金受賞</div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

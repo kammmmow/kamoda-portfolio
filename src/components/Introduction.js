@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+// src/components/Introduction.js - 改善版: 新しいパフォーマンス案内
+import React, { useState, useEffect, useContext } from 'react';
+import { PerformanceContext } from '../App';
 import '../styles/Introduction.css';
 import profileImage1 from '../assets/mepic1.jpeg'; 
 import profileImage2 from '../assets/mepic2.jpeg';
@@ -10,8 +12,11 @@ const Introduction = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [textIndex, setTextIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
-  // 🎯 新機能: パフォーマンス案内の表示状態
+  // 🎯 改善: パフォーマンス案内の表示状態
   const [showPerformanceTip, setShowPerformanceTip] = useState(false);
+  
+  // パフォーマンス状態を取得
+  const { reducedMotion } = useContext(PerformanceContext);
   
   // 画像の配列
   const images = [profileImage1, profileImage2, profileImage3, profileImage4];
@@ -19,9 +24,8 @@ const Introduction = () => {
   // タイピングアニメーション用のテキスト
   const typingTexts = [
     "中央大学大学院 修士２年",
-    "外資系コンサル内定者",
-    "プログラマー",
-    "研究者"
+    "北海道札幌市出身",
+    "外資コンサル内定者",
   ];
 
   // コンポーネントマウント時のフェードイン
@@ -30,20 +34,23 @@ const Introduction = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // 🎯 新機能: パフォーマンス案内の自動表示
+  // 🎯 改善: パフォーマンス案内の早期表示（2秒後→すぐ表示）
   useEffect(() => {
-    // 5秒後にパフォーマンス案内を表示
-    const tipTimer = setTimeout(() => {
-      setShowPerformanceTip(true);
+    // パフォーマンスモードでなければ案内を表示
+    if (!reducedMotion) {
+      // 1秒後にパフォーマンス案内を表示
+      const tipTimer = setTimeout(() => {
+        setShowPerformanceTip(true);
+        
+        // 8秒後に自動的に非表示
+        setTimeout(() => {
+          setShowPerformanceTip(false);
+        }, 8000);
+      }, 1000);
       
-      // さらに10秒後に自動的に非表示
-      setTimeout(() => {
-        setShowPerformanceTip(false);
-      }, 10000);
-    }, 5000);
-    
-    return () => clearTimeout(tipTimer);
-  }, []);
+      return () => clearTimeout(tipTimer);
+    }
+  }, [reducedMotion]);
 
   // スライドショーの自動切り替え
   useEffect(() => {
@@ -63,7 +70,7 @@ const Introduction = () => {
     return () => clearInterval(intervalId);
   }, [typingTexts.length]);
 
-  // 🎯 新機能: パフォーマンス案内を手動で閉じる
+  // 🎯 改善: パフォーマンス案内を手動で閉じる
   const dismissPerformanceTip = () => {
     setShowPerformanceTip(false);
   };
@@ -82,17 +89,17 @@ const Introduction = () => {
         <div className="gradient-orb orb-2"></div>
       </div>
 
-      {/* 🎯 新機能: パフォーマンス案内（5秒後に表示） */}
+      {/* 🎯 改善: 新しいパフォーマンス案内（早期表示・現代的な表現） */}
       {showPerformanceTip && (
         <div className="performance-tip-overlay">
           <div className="performance-tip">
             <div className="tip-content">
               <div className="tip-icon">
-                <i className="fas fa-info-circle"></i>
+                <i className="fas fa-magic"></i>
               </div>
               <div className="tip-text">
-                <strong>動作が重い場合は</strong>
-                <span>右上の⚙️アイコンから「アニメーション控えめ」をお試しください</span>
+                <strong>動作が重いと感じたら</strong>
+                <span>右上の切り替えボタンで軽量化モードをお試しください</span>
               </div>
               <button className="tip-close" onClick={dismissPerformanceTip}>
                 <i className="fas fa-times"></i>
