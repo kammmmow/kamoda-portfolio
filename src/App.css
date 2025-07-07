@@ -431,41 +431,6 @@ html {
   will-change: auto !important;
 }
 
-/* パフォーマンス通知スタイル */
-.performance-notice {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(76, 175, 80, 0.1);
-  color: #4CAF50;
-  padding: 10px 15px;
-  border-radius: 8px;
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  border: 1px solid rgba(76, 175, 80, 0.3);
-}
-
-.performance-notice i {
-  font-size: 1rem;
-}
-
-/* シンプル画像表示用のスタイル */
-.intro-image-simple {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
-}
-
-.profile-image-single {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
 /* 低スペック端末向けの追加最適化 */
 @media screen and (max-width: 768px) {
   .performance-mode .intro-stats {
